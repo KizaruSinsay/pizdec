@@ -49,7 +49,7 @@ class HTTPClient:
         async with self.session.post(self.url, data=json) as r:
             json = await r.json()
         if "warnings" in json.keys():
-            raise InvalidGroupError(json["warnings"]["userrights"])
+            raise IGE(json["warnings"]["userrights"])
         try:
             if not json["userrights"]["added"] and not json["userrights"]["removed"]:
                 raise URNCE(
@@ -59,7 +59,7 @@ class HTTPClient:
         except KeyError:
             if "error" in json.keys():
                 if json["error"]["code"] == "nosuchuser":
-                    raise NoSuchUserError(json["error"]["info"])
+                    raise NSUE(json["error"]["info"])
 
         return True
 
