@@ -8,7 +8,7 @@ class Page:
         self.wiki = wiki
 
     def __repr__(self):
-        return f"<aiowiki.page.Page title={self.title}>"
+        return f"<pipisa.page.Page title={self.title}>"
 
     def _cleanhtml(self, raw_html):
         cleantext = re.sub(r"<.*?>", "", raw_html)
